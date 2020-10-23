@@ -1,0 +1,5 @@
+{
+    "NeoPixelColors.Black|block": "schwarz",
+    "neopixel.Strip.setMatrixWidth|block": "%strip|setze Matrix Breite %width",
+    "{id:category}Neopixel": "NeoPixel"
+}

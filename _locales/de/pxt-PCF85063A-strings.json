@@ -1,5 +1,19 @@
 {
-    "NeoPixelColors.Black|block": "schwarz",
-    "neopixel.Strip.setMatrixWidth|block": "%strip|setze Matrix Breite %width",
-    "{id:category}Neopixel": "NeoPixel"
+    "PcfWeekdays.pcfMonday|block": "Montag",
+    "PcfWeekdays.pcfTuesday|block": "Dienstag",
+    "PcfWeekdays.pcfWednesday|block": "Mittwoch",
+    "PcfWeekdays.pcfThursday|block": "Donnerstag",
+    "PcfWeekdays.pcfFriday|block": "Freitag",
+    "PcfWeekdays.pcfSaturday|block": "Samstag",
+    "PcfWeekdays.pcfSunday|block": "Sonntag",
+    "DateTime_Format.DateTime_Weekday|block": "Wochentag",
+    "PCF85063.setClk|block": "Setze Taktausgang auf %clk",
+    "PCF85063.setInterrupt|block": "Setze Interrupt auf %interrupt",
+    "PCF85063.setType|block": "Setze Uhrentyp auf %modul",
+    "PCF85063.getDate|block": "Lese Datum",
+    "PCF85063.getTime|block": "Lese Uhrzeit",
+    "PCF85063.getDateTimePart|block": "Lies aus Uhrzeit %part",
+    "PCF85063.setClock|block": "Stelle Uhr: Jahr %year | Monat %month | Wochentag %weekday | Tag %day | Stunden %hours | Minuten %minutes | Sekunden %seconds",
+    "{id:group}:Basic": "Einfach",
+    "{id:group}Advanced": "Fortgeschritten"
 }

@@ -3,19 +3,24 @@
     "version": "0.0.1",
     "description": "",
     "dependencies": {
-        "core": "*",
-        "radio": "*"
+        "core": "*"
     },
     "files": [
         "README.md",
         "main.blocks",
-        "main.ts"
+        "main.ts",
+        "PCF85063A.ts"
     ],
     "testFiles": [
         "test.ts"
     ],
     "public": true,
+    "targetVersions": {
+        "target": "4.0.29",
+        "targetId": "calliopemini"
+    },
     "supportedTargets": [
+        "calliopemini",
         "microbit"
     ],
     "preferredEditor": "tsprj"

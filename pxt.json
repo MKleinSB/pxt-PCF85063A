@@ -1,5 +1,5 @@
 {
-    "name": "pxt-pcf85063a",
+    "name": "pxt-pcf85063A",
     "version": "0.0.1",
     "description": "",
     "dependencies": {
@@ -9,7 +9,8 @@
         "README.md",
         "main.blocks",
         "main.ts",
-        "PCF85063A.ts"
+        "PCF85063A.ts",
+        "_locales/de/pxt-PCF85063A-strings.json"
     ],
     "testFiles": [
         "test.ts"

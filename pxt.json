@@ -1,6 +1,6 @@
 {
     "name": "pxt-PCF85063A",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Extension for PCF85063A IIC clock",
     "dependencies": {
         "core": "*"

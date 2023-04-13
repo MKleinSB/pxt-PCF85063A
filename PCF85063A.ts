@@ -412,7 +412,7 @@ namespace PCF85063 {
     }
 
     //% blockId="setClock" block="Set date and time year %year | month %month | weekday %weekday | day %day | hours %hours | minutes %minutes | seconds %seconds"
-    //% year.min=2000 year.max= 2099 month.min=1 month.max=12
+    //% year.min=2000 year.max= 2099 month.min=1 month.max=12 year.defl=2023
     //% day.min=1 day.max=31 hours.min=1 hours.max=23 minutes.min=1 minutes.max=59 seconds.min=1 seconds.max=59
     //% group="Basic"
     export function setClock(year: number, month: number, weekday: PcfWeekdays,

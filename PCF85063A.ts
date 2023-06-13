@@ -53,6 +53,28 @@ enum PcfWeekdays {
 }
 
 /**
+ * Clock time
+ */
+enum CLK_Type {
+    //% block="32768 Hz"
+    CLK_32768,
+    //% block="16384 Hz"
+    CLK_16384,
+    //% block="8192 Hz"
+    CLK_8192,
+    //% block="4096 Hz"
+    CLK_4096,
+    //% block="2048 Hz"
+    CLK_2048,
+    //% block="1024 Hz"
+    CLK_1024,
+    //% block="1 Hz"
+    CLK_1,
+    //% block="Off"
+    CLK_Off
+}
+
+/**
  * Type of RTC chip
  */
 enum Chip_Type {
@@ -340,8 +362,8 @@ namespace PCF85063 {
     }
 
     //% blockId="setClock" block="Set date and time year %year | month %month | weekday %weekday | day %day | hours %hours | minutes %minutes | seconds %seconds"
-    //% year.min=2000 year.max= 2099 month.min=1 month.max=12 year.defl=2023
-    //% day.min=1 day.max=31 hours.min=1 hours.max=23 minutes.min=1 minutes.max=59 seconds.min=1 seconds.max=59
+    //% year.min=2000 year.max= 2099 month.min=1 month.max=12 month.defl=1 year.defl=2023
+    //% day.min=1 day.max=31 day-defl=1 hours.min=1 hours.max=23 minutes.min=1 minutes.max=59 seconds.min=1 seconds.max=59
     //% group="Basic"
     export function setClock(year: number, month: number, weekday: PcfWeekdays,
         day: number, hours: number, minutes: number, seconds: number) {
@@ -363,5 +385,55 @@ namespace PCF85063 {
         pins.i2cWriteNumber(PCF85063TP_ADDR, (CTRL_YEAR << 8) + DECtoBCD(year), NumberFormat.UInt16BE) // year
         pins.i2cWriteNumber(PCF85063TP_ADDR, CTRL_START, NumberFormat.UInt16BE) // control 1 start
     }
+
+    /**
+    * Set clock outout
+    */
+    //% blockId="setClk" block="Set clock output %clk"
+    //% group="Advanced"
+    export function setClk(clk: CLK_Type) {
+        getControlRegisters();
+        mask = 0b11111000;
+        new_reg = ctrl_reg1 & mask; // delete last 3 bits
+        switch (clk) {
+            case CLK_Type.CLK_32768:
+                pins.i2cWriteNumber(PCF85063TP_ADDR, (1 << 8) + new_reg + 0, NumberFormat.UInt16BE);
+                break;
+            case CLK_Type.CLK_16384:
+                pins.i2cWriteNumber(PCF85063TP_ADDR, (1 << 8) + new_reg + 1, NumberFormat.UInt16BE);
+                break;
+            case CLK_Type.CLK_8192:
+                pins.i2cWriteNumber(PCF85063TP_ADDR, (1 << 8) + new_reg + 2, NumberFormat.UInt16BE);
+                break;
+            case CLK_Type.CLK_4096:
+                pins.i2cWriteNumber(PCF85063TP_ADDR, (1 << 8) + new_reg + 3, NumberFormat.UInt16BE);
+                break;
+            case CLK_Type.CLK_2048:
+                pins.i2cWriteNumber(PCF85063TP_ADDR, (1 << 8) + new_reg + 4, NumberFormat.UInt16BE);
+                break;
+            case CLK_Type.CLK_1024:
+                pins.i2cWriteNumber(PCF85063TP_ADDR, (1 << 8) + new_reg + 5, NumberFormat.UInt16BE);
+                break;
+            case CLK_Type.CLK_1:
+                pins.i2cWriteNumber(PCF85063TP_ADDR, (1 << 8) + new_reg + 6, NumberFormat.UInt16BE);
+                break;
+            case CLK_Type.CLK_Off:
+                pins.i2cWriteNumber(PCF85063TP_ADDR, (1 << 8) + new_reg + 7, NumberFormat.UInt16BE);
+                break;
+        }
+
+        // Perform 11-1 / 18-1 read operations to get pointer back to correct position
+        if (rtc_Type === Chip_Type.Grove) {
+            for (let i = 1; i <= 10; i++) {
+                rtcModule = pins.i2cReadNumber(PCF85063TP_ADDR, NumberFormat.UInt16BE)
+            }
+        } else {
+            for (let i = 1; i <= 17; i++) {
+                rtcModule = pins.i2cReadNumber(PCF85063TP_ADDR, NumberFormat.UInt16BE)
+            }
+        }
+    }
+
+
 
 }

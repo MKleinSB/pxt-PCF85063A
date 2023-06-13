@@ -274,7 +274,7 @@ namespace PCF85063 {
      * Set type of RTC chip
      */
     //% blockId="setType" block="Set RTC type %modul"
-    //% group="Advanced"
+    //% group="Advanced" weight=90
     export function setType(modul: Chip_Type) {
         rtc_Type = modul;
     }
